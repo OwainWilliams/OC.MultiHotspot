@@ -25,7 +25,7 @@
     <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageIcon>logo.png</PackageIcon>
+    <PackageIcon>..\..\docs\logo.png</PackageIcon>
     <PackageReleaseNotes>Initial release with Konami code activation, configuration system, and extensibility for third-party packages.</PackageReleaseNotes>
   </PropertyGroup>
 
