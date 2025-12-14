@@ -1,0 +1,14 @@
+{
+  "id": "OC.HiddenDashboard",
+  "name": "OC.HiddenDashboard",
+  "version": "0.0.0",
+  "allowTelemetry": true,
+  "extensions": [
+    {
+      "name": "OCHidden Dashboard Bundle",
+      "alias": "OC.HiddenDashboard.Bundle",
+      "type": "bundle",
+      "js": "/App_Plugins/OCHiddenDashboard/oc-hidden-dashboard.js"
+    }
+  ]
+}
