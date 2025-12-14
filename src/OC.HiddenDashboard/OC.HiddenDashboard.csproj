@@ -38,9 +38,11 @@
   
   <ItemGroup>
     <!-- Dont include the client folder as part of packaging nuget build -->
+    <Compile Remove="docs\**" />
     <Content Remove="Client\**" />
-    <None Remove="docs\logo.png" />
-    <Content Include="docs\logo.png" />
+    <Content Remove="docs\**" />
+    <EmbeddedResource Remove="docs\**" />
+    <None Remove="docs\**" />
 
     <!-- However make the Umbraco-package.json included for dotnet pack or nuget package and visible to the solution -->
     <None Include="Client\public\umbraco-package.json" Pack="false" />
@@ -48,12 +50,6 @@
   
   <ItemGroup>
     <None Include="..\..\docs\README_nuget.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\docs\logo.png" Link="docs\logo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
