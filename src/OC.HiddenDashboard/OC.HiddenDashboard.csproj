@@ -7,11 +7,17 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <!-- Version Information -->
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    
+    <!-- Package Information -->
     <Product>Umbraco.Community.OC.HiddenDashboard</Product>
     <PackageId>Umbraco.Community.OC.HiddenDashboard</PackageId>
-    <Title>OC.Hidden Dashboard </Title>
-    <Description>...</Description>
-    <PackageTags>umbraco;umbraco-marketplace</PackageTags>
+    <Title>OC.Hidden Dashboard</Title>
+    <Description>Hide a dashboard with Konami code to unlock. Features extensibility for third-party packages, configuration options, and includes a playable Pac-Man game as an example.</Description>
+    <PackageTags>umbraco;umbraco-marketplace;dashboard;konami-code;easter-egg;extensibility</PackageTags>
     <Authors>Owain Williams</Authors>
     <Copyright>$([System.DateTime]::UtcNow.ToString(`yyyy`)) © Owain Williams</Copyright>
     <PackageProjectUrl>https://github.com/OwainWilliams/OC.HiddenDashboard</PackageProjectUrl>
@@ -19,7 +25,8 @@
     <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageIcon></PackageIcon>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageReleaseNotes>Initial release with Konami code activation, configuration system, and extensibility for third-party packages.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,6 +39,8 @@
   <ItemGroup>
     <!-- Dont include the client folder as part of packaging nuget build -->
     <Content Remove="Client\**" />
+    <None Remove="docs\logo.png" />
+    <Content Include="docs\logo.png" />
 
     <!-- However make the Umbraco-package.json included for dotnet pack or nuget package and visible to the solution -->
     <None Include="Client\public\umbraco-package.json" Pack="false" />
@@ -43,5 +52,10 @@
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
-
+  <ItemGroup>
+    <None Include="..\..\docs\logo.png" Link="docs\logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>
