@@ -1,9 +1,3 @@
-# OC.HiddenDashboard 
-
-[![Downloads](https://img.shields.io/nuget/dt/Umbraco.Community.OC.HiddenDashboard?color=cc9900)](https://www.nuget.org/packages/Umbraco.Community.OC.HiddenDashboard/)
-[![NuGet](https://img.shields.io/nuget/vpre/Umbraco.Community.OC.HiddenDashboard?color=0273B3)](https://www.nuget.org/packages/Umbraco.Community.OC.HiddenDashboard)
-[![GitHub license](https://img.shields.io/github/license/OwainWilliams/OC.HiddenDashboard?color=8AB803)](../LICENSE)
-
 # OC.HiddenDashboard
 
 A fun Umbraco package that adds a hidden dashboard accessible via the Konami code (↑ ↑ ↓ ↓ ← →), with full extensibility for third-party packages to register their own hidden content.
@@ -202,27 +196,14 @@ Perfect for:
 
 Contributions welcome! Please see [CONTRIBUTING.md](.github/CONTRIBUTING.md) for guidelines.
 
+## License
+
+[Your License Here]
+
 ## Credits
 
-Created by [Owain.Codes](https://owain.codes)
+Created by [Your Name/Organization]
 
 ---
 
 **Made with ❤️ for the Umbraco community**
-
-
-## Installation
-
-Add the package to an existing Umbraco website (v15+) from nuget:
-
-`dotnet add package Umbraco.Community.OC.HiddenDashboard`
-
-TODO *provide any other instructions for someone using your package*
-
-## Contributing
-
-Contributions to this package are most welcome! Please read the [Contributing Guidelines](CONTRIBUTING.md).
-
-## Acknowledgments
-
-TODO
