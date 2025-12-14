@@ -202,13 +202,9 @@ Perfect for:
 
 Contributions welcome! Please see [CONTRIBUTING.md](.github/CONTRIBUTING.md) for guidelines.
 
-## License
-
-[Your License Here]
-
 ## Credits
 
-Created by [Your Name/Organization]
+Created by [Owain.Codes](https://owain.codes)
 
 ---
 
