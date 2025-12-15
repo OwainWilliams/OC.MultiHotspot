@@ -16,6 +16,11 @@ A fun Umbraco package that adds a hidden dashboard accessible via the Konami cod
 dotnet add package OC.HiddenDashboard
 ```
 
+## Demo
+Press (↑ ↑ ↓ ↓ ← →) on the keyboard to display the hidden dashboard
+<img src="HiddenDashboard.gif" alt="Hidden Dashboard Demo">
+
+
 ## Quick Start
 
 ### 1. Access the Dashboard
