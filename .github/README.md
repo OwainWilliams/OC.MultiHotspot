@@ -198,11 +198,11 @@ Contributions welcome! Please see [CONTRIBUTING.md](.github/CONTRIBUTING.md) for
 
 ## License
 
-[Your License Here]
+MIT License
 
 ## Credits
 
-Created by [Your Name/Organization]
+Created by [Owain Williams](https://owain.codes)
 
 ---
 
