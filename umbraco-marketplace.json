@@ -10,7 +10,7 @@
   "DocumentationUrl": "https://github.com/OwainWilliams/OC.HiddenDashboard",
   "LicenseTypes": [ "Free" ],
   "IssueTrackerUrl": "https://github.com/OwainWilliams/OC.HiddenDashboard/issues",
-  "Category": "Developer Tools",
+  "Category": "Editor Tools",
   "PackageType": "Package",
   "Tags": [
     "dashboard"
