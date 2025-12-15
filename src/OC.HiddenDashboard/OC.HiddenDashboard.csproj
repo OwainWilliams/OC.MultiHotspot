@@ -13,8 +13,8 @@
     <FileVersion>1.0.0.0</FileVersion>
     
     <!-- Package Information -->
-    <Product>Umbraco.Community.OC.HiddenDashboard</Product>
-    <PackageId>Umbraco.Community.OC.HiddenDashboard</PackageId>
+    <Product>OC.HiddenDashboard</Product>
+    <PackageId>OC.HiddenDashboard</PackageId>
     <Title>OC.Hidden Dashboard</Title>
     <Description>Hide a dashboard with Konami code to unlock. Features extensibility for third-party packages, configuration options, and includes a playable Pac-Man game as an example.</Description>
     <PackageTags>umbraco;umbraco-marketplace;dashboard;konami-code;easter-egg;extensibility</PackageTags>
