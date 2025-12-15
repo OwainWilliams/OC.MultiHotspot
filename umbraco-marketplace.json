@@ -5,11 +5,14 @@
     "ImageUrl": "https://github.com/OwainWilliams.png",
     "Url": "https://owain.codes"
   },
-  "Category": "Developer-Tools",
+  "Title": "OC.HiddenDashboard",
   "Description": "A hidden dashboard for Umbraco 17, revealed by the Konami code (↑ ↑ ↓ ↓ ← →), with full extensibility for third-party packages to register their own hidden content.",
+  "DocumentationUrl": "https://github.com/OwainWilliams/OC.HiddenDashboard",
   "LicenseTypes": [ "Free" ],
   "IssueTrackerUrl": "https://github.com/OwainWilliams/OC.HiddenDashboard/issues",
+  "Category": "Developer Tools",
   "PackageType": "Package",
-  "Tags": [],
-  "Title": "OC.HiddenDashboard "
+  "Tags": [
+    "dashboard"
+  ]
 }
