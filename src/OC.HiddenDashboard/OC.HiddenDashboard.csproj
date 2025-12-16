@@ -11,7 +11,7 @@
     <Version>1.0.0</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
-    
+    <IsPackable>true</IsPackable>
     <!-- Package Information -->
     <Product>OC.HiddenDashboard</Product>
     <PackageId>OC.HiddenDashboard</PackageId>
@@ -43,7 +43,6 @@
     <Content Remove="docs\**" />
     <EmbeddedResource Remove="docs\**" />
     <None Remove="docs\**" />
-    <None Remove="logo.png" />
 
     <!-- However make the Umbraco-package.json included for dotnet pack or nuget package and visible to the solution -->
     <None Include="Client\public\umbraco-package.json" Pack="false" />
@@ -54,9 +53,15 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Include="logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
   
   <ItemGroup>
-    <Resource Include="logo.png" />
+    <None Update="logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
