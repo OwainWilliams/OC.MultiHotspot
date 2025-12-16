@@ -12,6 +12,13 @@ namespace OC.HiddenDashboard.Configuration
         public string DashboardTitle { get; set; } = "Hidden Dashboard";
 
         /// <summary>
+        /// The key sequence required to activate the hidden dashboard
+        /// If not set or empty, the hidden dashboard will not be accessible
+        /// Example: ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight"]
+        /// </summary>
+        public string[] KeySequence { get; set; } = Array.Empty<string>();
+
+        /// <summary>
         /// Whether to show the built-in example extensions (Example Content and Pac-Man game)
         /// Default: true
         /// </summary>

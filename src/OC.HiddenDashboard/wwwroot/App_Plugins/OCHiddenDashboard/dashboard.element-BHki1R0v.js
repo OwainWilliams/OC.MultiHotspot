@@ -1,11 +1,12 @@
-import { LitElement as x, html as o, css as f, state as d, customElement as m } from "@umbraco-cms/backoffice/external/lit";
-import { UmbElementMixin as E } from "@umbraco-cms/backoffice/element-api";
-import { UmbControllerBase as b } from "@umbraco-cms/backoffice/class-api";
+import { LitElement as p, html as o, css as x, state as d, customElement as m } from "@umbraco-cms/backoffice/external/lit";
+import { UmbElementMixin as f } from "@umbraco-cms/backoffice/element-api";
+import { UmbControllerBase as E } from "@umbraco-cms/backoffice/class-api";
 import { umbExtensionsRegistry as v } from "@umbraco-cms/backoffice/extension-registry";
-import { UmbArrayState as y, UmbObjectState as w } from "@umbraco-cms/backoffice/observable-api";
-class $ extends b {
-  constructor(e) {
-    super(e), this.#e = new y([], (i) => i.alias), this.extensions = this.#e.asObservable(), this.observe(
+import { UmbArrayState as g } from "@umbraco-cms/backoffice/observable-api";
+import { g as _ } from "./config.service-U1CJjH1k.js";
+class y extends E {
+  constructor(t) {
+    super(t), this.#e = new g([], (i) => i.alias), this.extensions = this.#e.asObservable(), this.observe(
       v.byType("hiddenContent"),
       (i) => {
         this.#t(i);
@@ -14,8 +15,8 @@ class $ extends b {
     );
   }
   #e;
-  #t(e) {
-    const i = e.map((s) => ({
+  #t(t) {
+    const i = t.map((s) => ({
       alias: s.alias,
       name: s.name,
       label: s.meta.label,
@@ -30,66 +31,27 @@ class $ extends b {
     return this.#e.value;
   }
 }
-let u = null;
-function C(t) {
-  return u || (u = new $(t)), u;
+let h = null;
+function $(e) {
+  return h || (h = new y(e)), h;
 }
-const O = {
-  dashboardTitle: "Hidden Dashboard",
-  showExampleExtensions: !0,
-  disabledExampleExtensions: [],
-  noExtensionsMessage: "No hidden content extensions registered yet.",
-  showExtensibilityHint: !0
+var w = Object.defineProperty, C = Object.getOwnPropertyDescriptor, c = (e, t, i, s) => {
+  for (var n = s > 1 ? void 0 : s ? C(t, i) : t, a = e.length - 1, l; a >= 0; a--)
+    (l = e[a]) && (n = (s ? l(t, i, n) : l(n)) || n);
+  return s && n && w(t, i, n), n;
 };
-class H extends b {
-  constructor(e) {
-    super(e), this.#e = new w(O), this.config = this.#e.asObservable(), this.#t();
-  }
-  #e;
-  async #t() {
-    try {
-      const e = await fetch("/umbraco/ochiddendashboard/api/v1/config", {
-        headers: {
-          "Content-Type": "application/json"
-        },
-        credentials: "include"
-      });
-      if (e.ok) {
-        const i = await e.json();
-        this.#e.setValue(i);
-      }
-    } catch {
-    }
-  }
-  getConfig() {
-    return this.#e.value;
-  }
-  isExtensionEnabled(e) {
-    const i = this.#e.value;
-    return !(e.startsWith("OC.HiddenDashboard.") && (e.includes("Example") || e.includes("Pacman")) && (!i.showExampleExtensions || i.disabledExampleExtensions.includes(e)));
-  }
-}
-let p = null;
-function g(t) {
-  return p || (p = new H(t)), p;
-}
-var D = Object.defineProperty, z = Object.getOwnPropertyDescriptor, c = (t, e, i, s) => {
-  for (var n = s > 1 ? void 0 : s ? z(e, i) : e, a = t.length - 1, l; a >= 0; a--)
-    (l = t[a]) && (n = (s ? l(e, i, n) : l(n)) || n);
-  return s && n && D(e, i, n), n;
-};
-let r = class extends E(x) {
+let r = class extends f(p) {
   constructor() {
     super(), this._extensions = [], this._filteredExtensions = [];
-    const t = C(this), e = g(this);
+    const e = $(this), t = _(this);
     this.observe(
-      t.extensions,
+      e.extensions,
       (i) => {
         this._extensions = i, this._filterExtensions();
       },
       "_observeExtensions"
     ), this.observe(
-      e.config,
+      t.config,
       (i) => {
         this._config = i, this._filterExtensions();
       },
@@ -101,15 +63,15 @@ let r = class extends E(x) {
       this._filteredExtensions = this._extensions;
       return;
     }
-    this._filteredExtensions = this._extensions.filter((t) => !(t.alias.startsWith("OC.HiddenDashboard.") && (t.alias.includes("Example") || t.alias.includes("Pacman")) && (!this._config.showExampleExtensions || this._config.disabledExampleExtensions.includes(t.alias)))), this._filteredExtensions.length > 0 ? (!this._selectedExtension || !this._filteredExtensions.includes(this._selectedExtension)) && this._selectExtension(this._filteredExtensions[0]) : (this._selectedExtension = void 0, this._loadedElement = void 0);
+    this._filteredExtensions = this._extensions.filter((e) => !(e.alias.startsWith("OC.HiddenDashboard.") && (e.alias.includes("Example") || e.alias.includes("Pacman")) && (!this._config.showExampleExtensions || this._config.disabledExampleExtensions.includes(e.alias)))), this._filteredExtensions.length > 0 ? (!this._selectedExtension || !this._filteredExtensions.includes(this._selectedExtension)) && this._selectExtension(this._filteredExtensions[0]) : (this._selectedExtension = void 0, this._loadedElement = void 0);
   }
-  async _selectExtension(t) {
-    this._selectedExtension = t, this._loadedElement = void 0;
+  async _selectExtension(e) {
+    this._selectedExtension = e, this._loadedElement = void 0;
     try {
-      const e = await t.elementLoader(), i = e.default || e[Object.keys(e)[0]];
+      const t = await e.elementLoader(), i = t.default || t[Object.keys(t)[0]];
       i && (this._loadedElement = new i());
-    } catch (e) {
-      console.error(`Failed to load extension element for ${t.alias}:`, e);
+    } catch (t) {
+      console.error(`Failed to load extension element for ${e.alias}:`, t);
     }
   }
   render() {
@@ -125,16 +87,16 @@ let r = class extends E(x) {
           <h3>🎮 Hidden Extensions</h3>
           <ul class="extension-list">
             ${this._filteredExtensions.map(
-      (t) => o`
+      (e) => o`
                 <li>
                   <uui-button
-                    look="${this._selectedExtension?.alias === t.alias ? "primary" : "secondary"}"
-                    label="${t.label}"
-                    @click="${() => this._selectExtension(t)}"
+                    look="${this._selectedExtension?.alias === e.alias ? "primary" : "secondary"}"
+                    label="${e.label}"
+                    @click="${() => this._selectExtension(e)}"
                     compact
                   >
-                    <uui-icon name="${t.icon || "icon-box"}"></uui-icon>
-                    ${t.label}
+                    <uui-icon name="${e.icon || "icon-box"}"></uui-icon>
+                    ${e.label}
                   </uui-button>
                 </li>
               `
@@ -159,7 +121,7 @@ let r = class extends E(x) {
   }
 };
 r.styles = [
-  f`
+  x`
       :host {
         display: block;
       }
@@ -234,35 +196,35 @@ c([
 r = c([
   m("oc-hidden-content-section")
 ], r);
-var P = Object.defineProperty, j = Object.getOwnPropertyDescriptor, _ = (t, e, i, s) => {
-  for (var n = s > 1 ? void 0 : s ? j(e, i) : e, a = t.length - 1, l; a >= 0; a--)
-    (l = t[a]) && (n = (s ? l(e, i, n) : l(n)) || n);
-  return s && n && P(e, i, n), n;
+var z = Object.defineProperty, O = Object.getOwnPropertyDescriptor, b = (e, t, i, s) => {
+  for (var n = s > 1 ? void 0 : s ? O(t, i) : t, a = e.length - 1, l; a >= 0; a--)
+    (l = e[a]) && (n = (s ? l(t, i, n) : l(n)) || n);
+  return s && n && z(t, i, n), n;
 };
-let h = class extends E(x) {
+let u = class extends f(p) {
   constructor() {
     super();
-    const t = g(this);
+    const e = _(this);
     this.observe(
-      t.config,
-      (e) => {
-        this._config = e;
+      e.config,
+      (t) => {
+        this._config = t;
       },
       "_observeConfig"
     );
   }
   render() {
-    const t = this._config?.dashboardTitle || "Hidden Dashboard";
+    const e = this._config?.dashboardTitle || "Hidden Dashboard";
     return o`
       <div class="dashboard-header">
-        <h1>🎮 ${t}</h1>
+        <h1>🎮 ${e}</h1>
       </div>
       <oc-hidden-content-section class="wide"></oc-hidden-content-section>
     `;
   }
 };
-h.styles = [
-  f`
+u.styles = [
+  x`
       :host {
         display: grid;
         gap: var(--uui-size-layout-1);
@@ -296,15 +258,15 @@ h.styles = [
       }
     `
 ];
-_([
+b([
   d()
-], h.prototype, "_config", 2);
-h = _([
+], u.prototype, "_config", 2);
+u = b([
   m("example-dashboard")
-], h);
-const M = h;
+], u);
+const R = u;
 export {
-  h as ExampleDashboardElement,
-  M as default
+  u as ExampleDashboardElement,
+  R as default
 };
-//# sourceMappingURL=dashboard.element-CGob8Qfh.js.map
+//# sourceMappingURL=dashboard.element-BHki1R0v.js.map

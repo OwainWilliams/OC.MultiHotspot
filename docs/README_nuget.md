@@ -7,4 +7,4 @@
 ## Demo
 <img src="HiddenDashboard.gif" alt="Hidden Dashboard Demo">
 
-Hide a secret dashboard in Umbraco, revealed by the Konami code (↑ ↑ ↓ ↓ ← →), with full extensibility for third-party packages to register their own hidden content.
+Hide a secret dashboard in Umbraco, revealed by the Konami code (↑ ↑ ↓ ↓ ← →) or a custom sequence, with full extensibility for third-party packages to register their own hidden content.

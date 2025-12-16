@@ -10,7 +10,7 @@ const a = [
     name: "OCHidden Dashboard Dashboard",
     alias: "OC.HiddenDashboard.Dashboard",
     type: "dashboard",
-    js: () => import("./dashboard.element-CGob8Qfh.js"),
+    js: () => import("./dashboard.element-BHki1R0v.js"),
     meta: {
       label: "Hidden Dashboard",
       pathname: "example-dashboard"
@@ -30,7 +30,7 @@ const a = [
     type: "condition",
     name: "Key Sequence Condition",
     alias: "OC.Condition.KeySequence",
-    api: () => import("./key-sequence.condition-DuE-ts7p.js")
+    api: () => import("./key-sequence.condition-CRSZu0uA.js")
   }
 ], t = [
   {

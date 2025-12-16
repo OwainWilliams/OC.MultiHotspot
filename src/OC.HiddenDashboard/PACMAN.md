@@ -4,7 +4,7 @@ A fully playable Pac-Man game hidden within the OC.HiddenDashboard extension!
 
 ## How to Play
 
-1. Enter the Konami code: **↑ ↑ ↓ ↓ ← →**
+1. Enter the Konami code: **↑ ↑ ↓ ↓ ← →** (this may vary if you've customized the key sequence)
 2. The Hidden Dashboard will appear
 3. Click on **"Pac-Man"** in the sidebar
 4. Click **"Start Game"** and use arrow keys to play!

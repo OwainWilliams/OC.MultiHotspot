@@ -1,11 +1,11 @@
 # OC.HiddenDashboard
 
-A fun Umbraco package that adds a hidden dashboard accessible via the Konami code (↑ ↑ ↓ ↓ ← →), with full extensibility for third-party packages to register their own hidden content.
+A fun Umbraco package that adds a hidden dashboard accessible via a configurable key sequence, with full extensibility for third-party packages to register their own hidden content.
 
 ## Features
 
-- 🎮 **Konami Code Activation** - Hidden dashboard revealed with classic cheat code
-- 🔧 **Fully Configurable** - Customize title, control example extensions via appsettings.json
+- 🎮 **Key Sequence Activation** - Hidden dashboard revealed with a configurable key sequence
+- 🔧 **Fully Configurable** - Customize title, key sequence, and control example extensions via appsettings.json
 - 🎯 **Extensible** - Third-party packages can register their own hidden content
 - 🎨 **Example Extensions** - Includes working Pac-Man game and documentation examples
 - 📦 **Type Safe** - Full TypeScript support for extension development
@@ -18,19 +18,32 @@ dotnet add package OC.HiddenDashboard
 
 ## Quick Start
 
-### 1. Access the Dashboard
-
-1. Navigate to Umbraco Content section
-2. Press the Konami code: **↑ ↑ ↓ ↓ ← →**
-3. The hidden dashboard appears!
-
-### 2. Configure (Optional)
+### 1. Configure the Key Sequence
 
 Add to your `appsettings.json`:
 
 ```json
 {
   "OC.HiddenDashboard": {
+    "KeySequence": ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight"]
+  }
+}
+```
+
+**Note:** If `KeySequence` is not set or is empty, the hidden dashboard will not be accessible.
+
+### 2. Access the Dashboard
+
+1. Navigate to Umbraco Content section
+2. Press the configured key sequence (example above is the Konami code: **↑ ↑ ↓ ↓ ← →**)
+3. The hidden dashboard appears!
+
+### 3. Additional Configuration (Optional)
+
+```json
+{
+  "OC.HiddenDashboard": {
+    "KeySequence": ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight"],
     "DashboardTitle": "Secret Developer Tools",
     "ShowExampleExtensions": false,
     "DisabledExampleExtensions": ["OC.HiddenDashboard.PacmanGame"]
@@ -42,6 +55,7 @@ Add to your `appsettings.json`:
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
+| `KeySequence` | string[] | [] (disabled) | Array of key codes to activate dashboard. Required to enable the dashboard. |
 | `DashboardTitle` | string | "Hidden Dashboard" | Title shown in the dashboard |
 | `ShowExampleExtensions` | boolean | true | Show/hide all built-in examples |
 | `DisabledExampleExtensions` | string[] | [] | Array of specific extensions to disable |
@@ -50,10 +64,29 @@ Add to your `appsettings.json`:
 
 ### Configuration Examples
 
-**Hide All Examples (Production):**
+**Classic Konami Code:**
 ```json
 {
   "OC.HiddenDashboard": {
+    "KeySequence": ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight"]
+  }
+}
+```
+
+**Simple Custom Sequence:**
+```json
+{
+  "OC.HiddenDashboard": {
+    "KeySequence": ["h", "i", "d", "d", "e", "n"]
+  }
+}
+```
+
+**Production Setup (Hide All Examples):**
+```json
+{
+  "OC.HiddenDashboard": {
+    "KeySequence": ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight"],
     "ShowExampleExtensions": false
   }
 }
@@ -63,6 +96,7 @@ Add to your `appsettings.json`:
 ```json
 {
   "OC.HiddenDashboard": {
+    "KeySequence": ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight"],
     "DisabledExampleExtensions": ["OC.HiddenDashboard.PacmanGame"]
   }
 }
@@ -72,6 +106,7 @@ Add to your `appsettings.json`:
 ```json
 {
   "OC.HiddenDashboard": {
+    "KeySequence": ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight"],
     "DashboardTitle": "🔧 Internal Tools"
   }
 }
@@ -198,11 +233,11 @@ Contributions welcome! Please see [CONTRIBUTING.md](.github/CONTRIBUTING.md) for
 
 ## License
 
-[Your License Here]
+MIT License. See [LICENSE](./LICENSE) for details.
 
 ## Credits
 
-Created by [Your Name/Organization]
+Created by [Owain.Codes](https://owain.codes)
 
 ---
 
