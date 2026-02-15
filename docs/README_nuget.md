@@ -1,10 +1,26 @@
-﻿# OC.Hidden Dashboard 
+﻿# OC.MultiHotspot
 
-[![Downloads](https://img.shields.io/nuget/dt/OC.HiddenDashboard?color=cc9900)](https://www.nuget.org/packages/OC.HiddenDashboard/)
-[![NuGet](https://img.shields.io/nuget/vpre/OC.HiddenDashboard?color=0273B3)](https://www.nuget.org/packages/OC.HiddenDashboard)
-[![GitHub license](https://img.shields.io/github/license/OwainWilliams/OC.HiddenDashboard?color=8AB803)](https://github.com/OwainWilliams/OC.HiddenDashboard/blob/main/LICENSE)
+[![Downloads](https://img.shields.io/nuget/dt/OC.MultiHotspot?color=cc9900)](https://www.nuget.org/packages/OC.MultiHotspot/)
+[![NuGet](https://img.shields.io/nuget/vpre/OC.MultiHotspot?color=0273B3)](https://www.nuget.org/packages/OC.MultiHotspot/)
+[![GitHub license](https://img.shields.io/github/license/OwainWilliams/OC.MultiHotspot?color=8AB803)](https://github.com/OwainWilliams/OC.MultiHotspot/blob/main/LICENSE)
 
-## Demo
-<img src="HiddenDashboard.gif" alt="Hidden Dashboard Demo">
+OC.MultiHotspot provides a simple way to add multiple interactive hotspots to images in ASP.NET Core Razor Pages projects in Umbraco 17+
 
-Hide a secret dashboard in Umbraco, revealed by the Konami code (↑ ↑ ↓ ↓ ← →) or a custom sequence, with full extensibility for third-party packages to register their own hidden content.
+
+
+## Features
+
+- ✅ Multiple hotspots per image
+- ✅ Customizable tooltips and popups
+- ✅ Responsive design support
+- ✅ Easy integration with Razor Pages
+- ✅ Configurable styling
+- ✅ Touch-friendly for mobile devices
+
+## Documentation
+
+For detailed documentation and examples, visit the [GitHub repository](https://github.com/OwainWilliams/OC.MultiHotspot).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/OwainWilliams/OC.MultiHotspot/blob/main/LICENSE) file for details.

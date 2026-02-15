@@ -1,0 +1,27 @@
+{
+  "name": "oc-multi-hotspot-editor",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "watch": "tsc && vite build --watch",
+    "build": "tsc && vite build",
+    "generate-client": "node scripts/generate-openapi.js https://localhost:5000/umbraco/swagger/oc-multi-hotspot-editor/swagger.json"
+  },
+  "peerDependencies": {
+    "@umbraco-cms/backoffice": "17.1.0"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.92.4",
+    "@types/leaflet": "^1.9.21",
+    "@umbraco-cms/backoffice": "17.1.0",
+    "chalk": "^5.6.2",
+    "cross-env": "^10.1.0",
+    "node-fetch": "^3.3.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4"
+  }
+}

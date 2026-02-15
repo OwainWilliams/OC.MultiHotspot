@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<StaticWebAssetBasePath>/</StaticWebAssetBasePath>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageId>OC.MultiHotspot</PackageId>
+		<Product>OC.MultiHotspot</Product>
+		<Title>OC.MultiHotspot</Title>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="Umbraco.Cms.Web.Website" Version="*" />
+		<PackageReference Include="Umbraco.Cms.Web.Common" Version="*" />
+		<PackageReference Include="Umbraco.Cms.Api.Common" Version="*" />
+		<PackageReference Include="Umbraco.Cms.Api.Management" Version="*" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Dont include the client folder as part of packaging nuget build -->
+		<Content Remove="Client\**" />
+
+		<!-- However make the Umbraco-package.json included for dotnet pack or nuget package and visible to the solution -->
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Client\public\umbraco-package.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="wwwroot\App_Plugins\" />
+	</ItemGroup>
+
+</Project>

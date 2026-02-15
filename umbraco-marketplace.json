@@ -5,11 +5,11 @@
     "ImageUrl": "https://github.com/OwainWilliams.png",
     "Url": "https://owain.codes"
   },
-  "Title": "OC.HiddenDashboard",
-  "Description": "A hidden dashboard for Umbraco 17, revealed by the Konami code (↑ ↑ ↓ ↓ ← →) or a custom sequence, with full extensibility for third-party packages to register their own hidden content.",
-  "DocumentationUrl": "https://github.com/OwainWilliams/OC.HiddenDashboard",
+  "Title": "OC.MultiHotspot",
+  "Description": "A property editor that allows a backoffice user to add multiple hotspots on an image along with descriptions. Render the image with hotspots on the frontend with Leaflet JS",
+  "DocumentationUrl": "https://github.com/OwainWilliams/OC.MultiHotspot",
   "LicenseTypes": [ "Free" ],
-  "IssueTrackerUrl": "https://github.com/OwainWilliams/OC.HiddenDashboard/issues",
+  "IssueTrackerUrl": "https://github.com/OwainWilliams/OC.MultiHotspot/issues",
   "Category": "Editor Tools",
   "PackageType": "Package",
   "Tags": [
@@ -17,8 +17,8 @@
   ],
   "Screenshots": [
     {
-      "ImageUrl": "https://github.com/OwainWilliams/OC.HiddenDashboard/blob/main/docs/HiddenDashboard.gif",
-      "Caption": "Hidden Dashboard"
+      "ImageUrl": "https://github.com/OwainWilliams/OC.MultiHotspot/blob/main/docs/configHotSpots.gif",
+      "Caption": "Backoffice Demo"
     }
   ]
 }

@@ -1,0 +1,19 @@
+{
+  "$schema": "../../umbraco-package-schema.json",
+  "id": "OC.MultiHotspot",
+  "name": "OC Multi Hotspot",
+  "version": "1.0.0",
+  "allowTelemetry": true,
+  "extensions": [
+    {
+      "type": "bundle",
+      "alias": "OC.MultiHotspot.Bundle",
+      "name": "OC Multi Hotspot Editor Bundle",
+      "js": "/App_Plugins/OCMultiHotspot/oc-multi-hotspot-editor.js",
+      "css": [
+        "/App_Plugins/OCMultiHotspot/src/css/style.css"
+      ]
+    }
+  ]
+}
+
