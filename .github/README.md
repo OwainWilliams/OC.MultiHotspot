@@ -54,7 +54,7 @@ Demo of adding hotspots in the backoffice:
 
 When viewed on the front end, the hotspots will be rendered as interactive elements (e.g. icons or tooltips) positioned according to the stored coordinates.
 
-![Hotspots with leaflet on the front end](../docs/leafletHotSpot.png)
+![Hotspots with leaflet on the front end](../docs/leafletHotSpots.png)
 
 ## Frontend rendering demo
 
