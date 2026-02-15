@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{33441570-FC3E-46DD-92D6-21CEDAC78E98}"
 	ProjectSection(SolutionItems) = preProject
 		..\.github\CONTRIBUTING.md = ..\.github\CONTRIBUTING.md
+		License.md = License.md
 		..\.github\README.md = ..\.github\README.md
 		..\docs\README_nuget.md = ..\docs\README_nuget.md
 		..\umbraco-marketplace.json = ..\umbraco-marketplace.json
