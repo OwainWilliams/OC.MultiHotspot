@@ -19,7 +19,7 @@
 		<RepositoryUrl>https://github.com/OwainWilliams/OC.MultiHotspot</RepositoryUrl>
 		<Description>OC.MultiHotspot provides a simple way to add multiple interactive hotspots to images in ASP.NET Core Razor Pages projects in Umbraco 17+</Description>
 		<PackageProjectUrl>https://github.com/OwainWilliams/OC.MultiHotspot</PackageProjectUrl>
-		<PackageTags>umbraco, property editor</PackageTags>
+		<PackageTags>umbraco, property editor, umbraco-marketplace</PackageTags>
 		<Authors>scottishcoder</Authors>
 		<Company>Owain.Codes</Company>
 		<Copyright>MIT</Copyright>
