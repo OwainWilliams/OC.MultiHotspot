@@ -10,6 +10,16 @@
 		<PackageId>OC.MultiHotspot</PackageId>
 		<Product>OC.MultiHotspot</Product>
 		<Title>OC.MultiHotspot</Title>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageIcon>logo.png</PackageIcon>
+		<PackageReadmeFile>README_nuget.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/OwainWilliams/OC.MultiHotspot</RepositoryUrl>
+		<Description>OC.MultiHotspot provides a simple way to add multiple interactive hotspots to images in ASP.NET Core Razor Pages projects in Umbraco 17+</Description>
+		<PackageProjectUrl>https://github.com/OwainWilliams/OC.MultiHotspot</PackageProjectUrl>
+		<PackageTags>umbraco, property editor</PackageTags>
+		<Authors>scottishcoder</Authors>
+		<Company>Owain.Codes</Company>
+		<Copyright>MIT</Copyright>
 	</PropertyGroup>
 
 
@@ -33,6 +43,17 @@
 
 	<ItemGroup>
 		<Folder Include="wwwroot\App_Plugins\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\docs\logo.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\..\docs\README_nuget.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>
