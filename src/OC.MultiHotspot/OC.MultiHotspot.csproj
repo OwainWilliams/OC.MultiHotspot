@@ -4,6 +4,9 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<StaticWebAssetBasePath>/</StaticWebAssetBasePath>
+		<!-- Disable static web assets for NuGet packaging -->
+		<GenerateStaticWebAssetsManifest>false</GenerateStaticWebAssetsManifest>
+		<StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>
 	</PropertyGroup>
 
 	<PropertyGroup>
