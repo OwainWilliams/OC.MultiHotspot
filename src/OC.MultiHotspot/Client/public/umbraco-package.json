@@ -2,7 +2,7 @@
   "$schema": "../../umbraco-package-schema.json",
   "id": "OC.MultiHotspot",
   "name": "OC Multi Hotspot",
-  "version": "1.0.3",
+  "version": "17.0.1",
   "allowTelemetry": true,
   "extensions": [
     {

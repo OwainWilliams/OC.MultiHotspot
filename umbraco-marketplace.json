@@ -3,7 +3,8 @@
   "AuthorDetails": {
     "Name": "Owain Williams",
     "ImageUrl": "https://github.com/OwainWilliams.png",
-    "Url": "https://owain.codes"
+    "Url": "https://owain.codes",
+    "Description": "Owain Williams is a Senior Developer at Initials Labs, a mutli-awarded Umbraco MVP"
   },
   "Title": "OC.MultiHotspot",
   "Description": "A property editor that allows a backoffice user to add multiple hotspots on an image along with descriptions. Render the image with hotspots on the frontend with Leaflet JS",
