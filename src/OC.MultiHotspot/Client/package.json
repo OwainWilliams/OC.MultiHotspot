@@ -1,7 +1,7 @@
 {
   "name": "oc-multi-hotspot-editor",
   "private": true,
-  "version": "17.0.2",
+  "version": "17.0.3",
   "type": "module",
   "scripts": {
     "watch": "tsc && vite build --watch",
