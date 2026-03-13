@@ -22,7 +22,7 @@
 		<Authors>scottishcoder</Authors>
 		<Company>Owain.Codes</Company>
 		<Copyright>MIT</Copyright>
-    <Version>17.0.2</Version>
+    <Version>17.0.3</Version>
 	</PropertyGroup>
 
   <ItemGroup>
