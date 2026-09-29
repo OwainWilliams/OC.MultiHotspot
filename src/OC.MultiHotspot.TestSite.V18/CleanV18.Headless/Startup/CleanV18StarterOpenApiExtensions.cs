@@ -1,0 +1,40 @@
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.Extensions.DependencyInjection;
+using Umbraco.Cms.Api.Common.Attributes;
+using Umbraco.Cms.Api.Common.DependencyInjection;
+
+namespace CleanV18.Headless.Startup;
+
+internal static class CleanV18StarterOpenApi
+{
+    public const string DocumentName = "cleanv18-starter";
+    public const string DisplayName = "CleanV18 starter kit";
+
+    public static IServiceCollection AddCleanV18StarterOpenApi(this IServiceCollection services)
+    {
+        services.AddOpenApi(DocumentName, options =>
+        {
+
+            // Include DictoryApiV1Controller,  SearchApiV1Controller and ContactApiV1Controller in the OpenAPI document
+            options.ShouldInclude = apiDescription =>
+                apiDescription.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor
+                && controllerActionDescriptor.EndpointMetadata
+                    .OfType<MapToApiAttribute>()
+                    .Any(attribute => attribute.ApiName == DocumentName);
+
+            options.AddDocumentTransformer((document, _, _) =>
+            {
+                document.Info.Title = DisplayName;
+                document.Info.Version = "Latest";
+                document.Info.Description = "Contains headless endpoints for search, dictionaries and forms";
+                return Task.CompletedTask;
+            });
+        });
+
+        services.AddOpenApiDocumentToUi(DocumentName, DisplayName);
+        return services;
+    }
+}

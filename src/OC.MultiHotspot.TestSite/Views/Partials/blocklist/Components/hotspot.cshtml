@@ -16,13 +16,10 @@
 
     var imageWidth = hotspot.Width ?? 400;
     var imageHeight = hotspot.Height ?? 300;
-    var imageUrl = hotspot.Image.Contains('?')
-        ? hotspot.Image
-        : $"{hotspot.Image}?width={imageWidth}&height={imageHeight}&rmode=min&quality=80";
 
     var mapData = JsonSerializer.Serialize(new
     {
-        image = imageUrl,
+        image = hotspot.Image.Split('?')[0], // values saved by older versions carry unsigned resize params
         width = imageWidth,
         height = imageHeight,
         bounds = hotspot.Bounds ?? new HotspotBounds { North = 100, South = 0, East = 100, West = 0 },

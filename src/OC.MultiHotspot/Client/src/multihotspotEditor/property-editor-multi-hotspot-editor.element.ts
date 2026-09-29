@@ -685,7 +685,7 @@ export class PropertyEditorHotSpotsEditorElement extends UmbLitElement implement
         const configuredWidth = this._config?.getValueByAlias("width");
         this._imgWidth = this.#validateConfiguredWidth(configuredWidth?.toString());
         this._imgHeight = Math.round(this._imgWidth * DEFAULT_ASPECT_RATIO);
-        this._imgSrc = `${src}?width=${this._imgWidth}&height=${this._imgHeight}&rmode=min&quality=80`;
+        this._imgSrc = src;
     }
 
     /**
@@ -714,7 +714,7 @@ export class PropertyEditorHotSpotsEditorElement extends UmbLitElement implement
                 const umbracoFile = this.#getPropertyValue("umbracoFile", media.data);
 
                 if (umbracoFile?.src) {
-                    this._imgSrc = `${umbracoFile.src}?width=${this._imgWidth}&height=${this._imgHeight}&rmode=min&quality=80`;
+                    this._imgSrc = umbracoFile.src;
                 }
             }
         } catch (error) {
