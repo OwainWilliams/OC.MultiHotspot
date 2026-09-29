@@ -4,6 +4,7 @@ import { UmbChangeEvent } from '@umbraco-cms/backoffice/event';
 import type { HotSpotsEditorValues, HotSpotsEditorHotspot } from "../types/HotSpotseditor";
 import type { UmbPropertyEditorUiElement } from '@umbraco-cms/backoffice/property-editor';
 import { UMB_DOCUMENT_WORKSPACE_CONTEXT, UmbDocumentWorkspaceContext } from "@umbraco-cms/backoffice/document";
+import { UMB_PROPERTY_DATASET_CONTEXT, type UmbPropertyDatasetContext } from "@umbraco-cms/backoffice/property";
 import { UmbDocumentDetailRepository } from "@umbraco-cms/backoffice/document";
 import { UmbDocumentItemRepository } from "@umbraco-cms/backoffice/document";
 import { UmbMediaDetailRepository } from "@umbraco-cms/backoffice/media";
@@ -188,6 +189,11 @@ export class PropertyEditorHotSpotsEditorElement extends UmbLitElement implement
     }
 
     #documentWorkspaceContext?: UmbDocumentWorkspaceContext;
+    // The image property alongside this one: the block element's when used inside a block, the document's otherwise
+    #dataset?: UmbPropertyDatasetContext;
+    #datasetImageAlias?: string;
+    #datasetHasImage = false;
+    #datasetImageValue?: unknown;
     #documentDetailRepository = new UmbDocumentDetailRepository(this);
     #documentItemRepository = new UmbDocumentItemRepository(this);
     #mediaDetailRepository = new UmbMediaDetailRepository(this);
@@ -570,7 +576,9 @@ export class PropertyEditorHotSpotsEditorElement extends UmbLitElement implement
      */
     async #setConfig(): Promise<void> {
         try {
-            if (!this._config || !this.#documentWorkspaceContext) {
+            await this.#observeDatasetImage();
+
+            if (!this._config || (!this.#documentWorkspaceContext && !this.#datasetHasImage)) {
                 return;
             }
 
@@ -592,12 +600,40 @@ export class PropertyEditorHotSpotsEditorElement extends UmbLitElement implement
     }
 
     /**
+     * Follows the image property in the nearest dataset, so the editor updates when the image is changed
+     */
+    async #observeDatasetImage(): Promise<void> {
+        const imagePropertyAlias = this._config?.getValueByAlias("imageSrc")?.toString();
+        if (!this.#dataset || !imagePropertyAlias || imagePropertyAlias === this.#datasetImageAlias) {
+            return;
+        }
+
+        this.#datasetImageAlias = imagePropertyAlias;
+        const observable = await this.#dataset.propertyValueByAlias(imagePropertyAlias);
+        if (!observable) {
+            return;
+        }
+
+        this.#datasetHasImage = true;
+        this.observe(observable, (value) => {
+            const changed = value !== this.#datasetImageValue;
+            this.#datasetImageValue = value ?? undefined;
+            if (changed) {
+                this.#setConfig();
+            }
+        }, '_observeDatasetImage');
+    }
+
+    /**
      * Configures image from property with error handling
      */
     async #configureImageFromProperty(imagePropertyAlias: string): Promise<void> {
-        let imageValue = this.#documentWorkspaceContext?.getPropertyValue<Array<any>>(imagePropertyAlias);
+        // A property alongside this one wins even when empty, so a block never borrows the page's image
+        let imageValue = this.#datasetHasImage
+            ? this.#datasetImageValue as Array<any> | undefined
+            : this.#documentWorkspaceContext?.getPropertyValue<Array<any>>(imagePropertyAlias);
 
-        if (!imageValue) {
+        if (!imageValue && !this.#datasetHasImage) {
             const retrievedValue = await this.#getValueFromUnique(
                 this.#documentWorkspaceContext?.getUnique(), 
                 imagePropertyAlias
@@ -614,6 +650,8 @@ export class PropertyEditorHotSpotsEditorElement extends UmbLitElement implement
             } else if (mediaKey) {
                 await this.#configureMediaImage(mediaKey);
             }
+        } else {
+            this.#setPlaceholderImage();
         }
     }
 
@@ -895,6 +933,12 @@ export class PropertyEditorHotSpotsEditorElement extends UmbLitElement implement
 
         this.consumeContext(UMB_DOCUMENT_WORKSPACE_CONTEXT, (context) => {
             this.#documentWorkspaceContext = context;
+            this.#setConfig();
+        });
+
+        // Inside a block the document workspace only holds the page's properties, so read the image from the nearest dataset first
+        this.consumeContext(UMB_PROPERTY_DATASET_CONTEXT, (dataset) => {
+            this.#dataset = dataset;
             this.#setConfig();
         });
 
