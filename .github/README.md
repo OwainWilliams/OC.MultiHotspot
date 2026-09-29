@@ -10,7 +10,7 @@ It is based on the package by Soren Kottal - [Image Hotspot Editor](https://mark
 
 
 ## Compatibility
-- Umbraco 17
+- Umbraco 17 and Umbraco 18
 - .NET 10
 - Razor Pages / Razor views
 
