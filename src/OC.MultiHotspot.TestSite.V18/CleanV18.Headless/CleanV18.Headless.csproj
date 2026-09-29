@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyVersion>8.0.1</AssemblyVersion>
+    <FileVersion>8.0.0.0</FileVersion>
+    <Version>8.0.1</Version>
+    <InformationalVersion>8.0.1</InformationalVersion>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <InterceptorsNamespaces>$(InterceptorsNamespaces);Microsoft.AspNetCore.OpenApi.Generated</InterceptorsNamespaces>
+    <Authors>Paul Seal,Phil Whittaker</Authors>
+    <ContentTargetFolders>.</ContentTargetFolders>
+    <Product>CleanV18.Headless</Product>
+    <PackageId>CleanV18.Headless</PackageId>
+    <Title>CleanV18.Headless</Title>
+    <Description>Headless Extension for the CleanV18 Starter Kit for Umbraco</Description>
+    <PackageTags>umbraco plugin package starter kit CleanV18 core library headless</PackageTags>
+    <PackageProjectUrl>https://github.com/prjseal/CleanV18</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/prjseal/CleanV18</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="18.0.1" />
+    <PackageReference Include="Umbraco.Cms.Api.Common" Version="18.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Revalidate\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../images/logo.png" Pack="true" PackPath="\" />
+    <None Include="../../README.md" Pack="true" PackPath="\" />
+  </ItemGroup>
+</Project>

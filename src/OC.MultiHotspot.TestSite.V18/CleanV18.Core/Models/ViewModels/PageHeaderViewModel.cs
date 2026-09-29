@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Umbraco.Cms.Core.Models.PublishedContent;
+
+namespace CleanV18.Core.Models.ViewModels
+{
+    public class PageHeaderViewModel
+    {
+        public string Name { get; set; }
+        public string Title { get; set; }
+        public string Subtitle { get; set; }
+        public bool HasSubtitle => !string.IsNullOrWhiteSpace(Subtitle);
+        public IPublishedContent BackgroundImage { get; set; }
+        public bool HasBackgroundImage => BackgroundImage != null;
+        public string AuthorName { get; set; }
+        public bool HasAuthor => !string.IsNullOrWhiteSpace(AuthorName);
+        public DateTime? ArticleDate { get; set; }
+        public bool IsArticle => ArticleDate.HasValue;
+        public IEnumerable<IPublishedElement> Categories { get; set; }
+
+        public PageHeaderViewModel(string name, string title, 
+            string subtitle, IPublishedContent backgroundImage,
+            string authorName = null, DateTime? articleDate = null, 
+            IEnumerable<IPublishedElement> categories = null)
+        {
+            Name = name;
+            Title = title;
+            Subtitle = subtitle;
+            BackgroundImage = backgroundImage;
+            AuthorName = authorName;
+            ArticleDate = articleDate;
+            Categories = categories;
+        }
+    }
+}
