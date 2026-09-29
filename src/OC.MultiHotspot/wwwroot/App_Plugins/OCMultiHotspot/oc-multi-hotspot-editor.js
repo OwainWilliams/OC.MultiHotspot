@@ -4,7 +4,7 @@ const t = [
     alias: "OC.MultiHotspot.PropertyEditorUi",
     type: "propertyEditorUi",
     elementName: "property-editor-multi-hotspot-editor",
-    element: () => import("./property-editor-multi-hotspot-editor.element-71ml8vA7.js"),
+    element: () => import("./property-editor-multi-hotspot-editor.element-02cvaxXp.js"),
     meta: {
       group: "common",
       icon: "icon-crosshair",

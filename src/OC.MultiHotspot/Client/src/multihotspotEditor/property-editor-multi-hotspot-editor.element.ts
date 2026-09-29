@@ -194,6 +194,10 @@ export class PropertyEditorHotSpotsEditorElement extends UmbLitElement implement
     #datasetImageAlias?: string;
     #datasetHasImage = false;
     #datasetImageValue?: unknown;
+    // Shared by overlapping #setConfig calls, so none reads the image before the dataset has been checked
+    #datasetImageReady?: Promise<void>;
+    // Only the latest #setConfig call may set the image, so an older, slower lookup can't overwrite it
+    #configRun = 0;
     #documentDetailRepository = new UmbDocumentDetailRepository(this);
     #documentItemRepository = new UmbDocumentItemRepository(this);
     #mediaDetailRepository = new UmbMediaDetailRepository(this);
@@ -575,8 +579,13 @@ export class PropertyEditorHotSpotsEditorElement extends UmbLitElement implement
      * Main configuration setup method with improved error handling
      */
     async #setConfig(): Promise<void> {
+        const run = ++this.#configRun;
         try {
             await this.#observeDatasetImage();
+
+            if (run !== this.#configRun) {
+                return;
+            }
 
             if (!this._config || (!this.#documentWorkspaceContext && !this.#datasetHasImage)) {
                 return;
@@ -589,27 +598,37 @@ export class PropertyEditorHotSpotsEditorElement extends UmbLitElement implement
                 return;
             }
 
-            await this.#configureImageFromProperty(imagePropertyAlias);
+            await this.#configureImageFromProperty(imagePropertyAlias, run);
             this.#configureTheme();
             this.requestUpdate();
-            
+
         } catch (error) {
             console.error('Failed to configure custom map editor:', error);
-            this.#setPlaceholderImage();
+            if (run === this.#configRun) {
+                this.#setPlaceholderImage();
+            }
         }
     }
 
     /**
      * Follows the image property in the nearest dataset, so the editor updates when the image is changed
      */
-    async #observeDatasetImage(): Promise<void> {
+    #observeDatasetImage(): Promise<void> {
         const imagePropertyAlias = this._config?.getValueByAlias("imageSrc")?.toString();
-        if (!this.#dataset || !imagePropertyAlias || imagePropertyAlias === this.#datasetImageAlias) {
-            return;
+        if (!this.#dataset || !imagePropertyAlias) {
+            return Promise.resolve();
         }
 
-        this.#datasetImageAlias = imagePropertyAlias;
-        const observable = await this.#dataset.propertyValueByAlias(imagePropertyAlias);
+        if (imagePropertyAlias !== this.#datasetImageAlias || !this.#datasetImageReady) {
+            this.#datasetImageAlias = imagePropertyAlias;
+            this.#datasetImageReady = this.#followDatasetImage(this.#dataset, imagePropertyAlias);
+        }
+
+        return this.#datasetImageReady;
+    }
+
+    async #followDatasetImage(dataset: UmbPropertyDatasetContext, imagePropertyAlias: string): Promise<void> {
+        const observable = await dataset.propertyValueByAlias(imagePropertyAlias);
         if (!observable) {
             return;
         }
@@ -627,7 +646,7 @@ export class PropertyEditorHotSpotsEditorElement extends UmbLitElement implement
     /**
      * Configures image from property with error handling
      */
-    async #configureImageFromProperty(imagePropertyAlias: string): Promise<void> {
+    async #configureImageFromProperty(imagePropertyAlias: string, run: number): Promise<void> {
         // A property alongside this one wins even when empty, so a block never borrows the page's image
         let imageValue = this.#datasetHasImage
             ? this.#datasetImageValue as Array<any> | undefined
@@ -641,6 +660,10 @@ export class PropertyEditorHotSpotsEditorElement extends UmbLitElement implement
             imageValue = retrievedValue || undefined;
         }
 
+        if (run !== this.#configRun) {
+            return;
+        }
+
         if (imageValue && typeof imageValue === 'object') {
             const firstImageValue = Array.isArray(imageValue) ? imageValue[0] : imageValue;
             const mediaKey = firstImageValue?.mediaKey || firstImageValue?.key || firstImageValue?.udi;
@@ -648,7 +671,7 @@ export class PropertyEditorHotSpotsEditorElement extends UmbLitElement implement
             if (!mediaKey && firstImageValue?.src) {
                 this.#configureDirectImageSrc(firstImageValue.src);
             } else if (mediaKey) {
-                await this.#configureMediaImage(mediaKey);
+                await this.#configureMediaImage(mediaKey, run);
             }
         } else {
             this.#setPlaceholderImage();
@@ -668,9 +691,12 @@ export class PropertyEditorHotSpotsEditorElement extends UmbLitElement implement
     /**
      * Configures image from media repository
      */
-    async #configureMediaImage(mediaKey: string): Promise<void> {
+    async #configureMediaImage(mediaKey: string, run: number): Promise<void> {
         try {
             const media = await this.#mediaDetailRepository.requestByUnique(mediaKey);
+            if (run !== this.#configRun) {
+                return;
+            }
 
             if (media?.data) {
                 const mediaWidth = this.#getPropertyValue("umbracoWidth", media.data) || 0;
@@ -939,6 +965,8 @@ export class PropertyEditorHotSpotsEditorElement extends UmbLitElement implement
         // Inside a block the document workspace only holds the page's properties, so read the image from the nearest dataset first
         this.consumeContext(UMB_PROPERTY_DATASET_CONTEXT, (dataset) => {
             this.#dataset = dataset;
+            this.#datasetImageReady = undefined;
+            this.#datasetHasImage = false;
             this.#setConfig();
         });
 

@@ -1,0 +1,56 @@
+@using System.Net
+@using System.Text.Json
+@using OC.MultiHotspot.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem>
+@{
+    // By alias, so no generated Hotspot element model is needed
+    var hotspot = Model.Content.Value<MultiHotSpot>("hotspotPicker");
+    var mapId = "map-" + Model.Content.Key.ToString("N");
+
+    if (hotspot == null || string.IsNullOrEmpty(hotspot.Image))
+    {
+        <p class="text-muted">Hotspot block has no image saved.</p>
+        return;
+    }
+
+    var imageWidth = hotspot.Width ?? 400;
+    var imageHeight = hotspot.Height ?? 300;
+    var imageUrl = hotspot.Image.Contains('?')
+        ? hotspot.Image
+        : $"{hotspot.Image}?width={imageWidth}&height={imageHeight}&rmode=min&quality=80";
+
+    var mapData = JsonSerializer.Serialize(new
+    {
+        image = imageUrl,
+        width = imageWidth,
+        height = imageHeight,
+        bounds = hotspot.Bounds ?? new HotspotBounds { North = 100, South = 0, East = 100, West = 0 },
+        hotspots = hotspot.Hotspots.Select(h => new { h.Lat, h.Lng, h.Description, Title = WebUtility.HtmlEncode(h.Title) })
+    }, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+}
+
+<div id="@mapId" class="mb-4" style="width: @(imageWidth)px; height: @(imageHeight)px;"></div>
+
+@await Html.PartialAsync("hotspotIcon")
+<script>
+    (function () {
+        var mapData = @Html.Raw(mapData);
+
+        var map = L.map('@mapId', { crs: L.CRS.Simple, minZoom: 0, maxZoom: 2 });
+        var bounds = [[0, 0], [mapData.height, mapData.width]];
+        L.imageOverlay(mapData.image, bounds).addTo(map);
+
+        mapData.hotspots.forEach(function (hotspot) {
+            // Stored coordinates have a top-left origin; Leaflet's Simple CRS is bottom-left
+            var y = ((mapData.bounds.north - hotspot.lat) / (mapData.bounds.north - mapData.bounds.south)) * mapData.height;
+            var x = ((hotspot.lng - mapData.bounds.west) / (mapData.bounds.east - mapData.bounds.west)) * mapData.width;
+
+            L.marker([mapData.height - y, x], { icon: window.hotspotIcon })
+                .bindPopup((hotspot.title ? '<b>' + hotspot.title + '</b><br>' : '') + hotspot.description)
+                .addTo(map);
+        });
+
+        map.fitBounds(bounds, { animate: false });
+    })();
+</script>

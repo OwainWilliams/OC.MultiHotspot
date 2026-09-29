@@ -1,35 +1,43 @@
-import { html as d, unsafeHTML as L, css as rt, state as p, property as N, customElement as lt } from "@umbraco-cms/backoffice/external/lit";
-import { UmbLitElement as ht } from "@umbraco-cms/backoffice/lit-element";
-import { UmbChangeEvent as R } from "@umbraco-cms/backoffice/event";
-import { UmbDocumentDetailRepository as dt, UmbDocumentItemRepository as pt, UMB_DOCUMENT_WORKSPACE_CONTEXT as ct } from "@umbraco-cms/backoffice/document";
-import { UmbMediaDetailRepository as gt } from "@umbraco-cms/backoffice/media";
-import { UmbTextStyles as ut } from "@umbraco-cms/backoffice/style";
-import { UmbPropertyEditorConfigCollection as mt } from "@umbraco-cms/backoffice/property-editor";
-var ft = Object.defineProperty, _t = Object.getOwnPropertyDescriptor, F = (t) => {
+import { html as c, unsafeHTML as V, css as ft, state as u, property as Y, customElement as _t } from "@umbraco-cms/backoffice/external/lit";
+import { UmbLitElement as bt } from "@umbraco-cms/backoffice/lit-element";
+import { UmbChangeEvent as K } from "@umbraco-cms/backoffice/event";
+import { UmbDocumentDetailRepository as vt, UmbDocumentItemRepository as yt, UMB_DOCUMENT_WORKSPACE_CONTEXT as Ht } from "@umbraco-cms/backoffice/document";
+import { UMB_PROPERTY_DATASET_CONTEXT as xt } from "@umbraco-cms/backoffice/property";
+import { UmbMediaDetailRepository as Tt } from "@umbraco-cms/backoffice/media";
+import { UmbTextStyles as wt } from "@umbraco-cms/backoffice/style";
+import { UmbPropertyEditorConfigCollection as Ut } from "@umbraco-cms/backoffice/property-editor";
+var Ct = Object.defineProperty, kt = Object.getOwnPropertyDescriptor, j = (t) => {
   throw TypeError(t);
-}, h = (t, i, e, n) => {
-  for (var a = n > 1 ? void 0 : n ? _t(i, e) : i, r = t.length - 1, c; r >= 0; r--)
-    (c = t[r]) && (a = (n ? c(i, e, a) : c(a)) || a);
-  return n && a && ft(i, e, a), a;
-}, $ = (t, i, e) => i.has(t) || F("Cannot " + e), u = (t, i, e) => ($(t, i, "read from private field"), e ? e.call(t) : i.get(t)), m = (t, i, e) => i.has(t) ? F("Cannot add the same private member more than once") : i instanceof WeakSet ? i.add(t) : i.set(t, e), bt = (t, i, e, n) => ($(t, i, "write to private field"), i.set(t, e), e), s = (t, i, e) => ($(t, i, "access private method"), e), o, O, _, k, A, E, x, M, f, V, G, v, S, D, X, T, Y, j, I, w, U, H, K, J, Q, Z, y, tt, C, b, it, et, ot, st, nt;
-const W = 400, P = 0.75, z = 6, q = 200, vt = 2e3, Ht = 100, yt = 2e3, xt = {
+}, p = (t, i, e, a) => {
+  for (var n = a > 1 ? void 0 : a ? kt(i, e) : i, l = t.length - 1, g; l >= 0; l--)
+    (g = t[l]) && (n = (a ? g(i, e, n) : g(n)) || n);
+  return a && n && Ct(i, e, n), n;
+}, W = (t, i, e) => i.has(t) || j("Cannot " + e), r = (t, i, e) => (W(t, i, "read from private field"), e ? e.call(t) : i.get(t)), d = (t, i, e) => i.has(t) ? j("Cannot add the same private member more than once") : i instanceof WeakSet ? i.add(t) : i.set(t, e), m = (t, i, e, a) => (W(t, i, "write to private field"), i.set(t, e), e), o = (t, i, e) => (W(t, i, "access private method"), e), $t = (t, i, e, a) => ({
+  set _(n) {
+    m(t, i, n);
+  },
+  get _() {
+    return r(t, i, a);
+  }
+}), s, J, x, w, $, b, U, y, _, D, P, B, A, L, H, Q, Z, C, z, R, tt, E, it, et, q, M, I, v, st, ot, at, nt, rt, lt, k, ht, S, T, dt, pt, ct, gt, ut;
+const N = 400, O = 0.75, G = 6, X = 200, At = 2e3, Et = 100, Mt = 2e3, It = {
   north: 100,
   south: 0,
   east: 100,
   west: 0
-}, Tt = {
+}, St = {
   Red: 1,
   Green: 2,
   Blue: 3,
   Orange: 4
   /* Orange */
 };
-let l = class extends ht {
+let h = class extends bt {
   /**
    * Constructor - initializes the element
    */
   constructor() {
-    super(), m(this, o), this._configCollection = new mt([
+    super(), d(this, s), this._configCollection = new Ut([
       {
         alias: "hideLabel",
         value: !0
@@ -72,13 +80,13 @@ let l = class extends ht {
           "Umb.Tiptap.Underline"
         ]
       }
-    ]), this._imgWidth = W, this._imgHeight = 0, this._imgTheme = 1, this._isAddingHotspot = !1, this._mapBounds = { ...xt }, this._hasUnsavedChanges = !1, this._value = {
+    ]), this._imgWidth = N, this._imgHeight = 0, this._imgTheme = 1, this._isAddingHotspot = !1, this._mapBounds = { ...It }, this._hasUnsavedChanges = !1, this._value = {
       image: null,
       width: null,
       height: null,
       bounds: null,
       hotspots: []
-    }, m(this, _), m(this, k, new dt(this)), m(this, A, new pt(this)), m(this, E, new gt(this)), this.coordinateConverter = {
+    }, d(this, x), d(this, w), d(this, $), d(this, b, !1), d(this, U), d(this, y), d(this, _, 0), d(this, D, new vt(this)), d(this, P, new yt(this)), d(this, B, new Tt(this)), this.coordinateConverter = {
       /**
        * Converts pixel coordinates to geographic coordinates based on configured map bounds
        * @param x - Pixel X coordinate
@@ -87,10 +95,10 @@ let l = class extends ht {
        * @throws Error if image dimensions are invalid
        */
       pixelToLatLng: (t, i) => {
-        if (!s(this, o, v).call(this))
+        if (!o(this, s, C).call(this))
           throw new Error("Invalid image dimensions for coordinate conversion");
-        const e = this._mapBounds.north - i / this._imgHeight * (this._mapBounds.north - this._mapBounds.south), n = this._mapBounds.west + t / this._imgWidth * (this._mapBounds.east - this._mapBounds.west);
-        return { lat: e, lng: n };
+        const e = this._mapBounds.north - i / this._imgHeight * (this._mapBounds.north - this._mapBounds.south), a = this._mapBounds.west + t / this._imgWidth * (this._mapBounds.east - this._mapBounds.west);
+        return { lat: e, lng: a };
       },
       /**
        * Converts geographic coordinates to pixel coordinates for display
@@ -100,7 +108,7 @@ let l = class extends ht {
        * @throws Error if image dimensions are invalid
        */
       latLngToPixel: (t, i) => {
-        if (!s(this, o, v).call(this))
+        if (!o(this, s, C).call(this))
           throw new Error("Invalid image dimensions for coordinate conversion");
         const e = (this._mapBounds.north - t) / (this._mapBounds.north - this._mapBounds.south) * this._imgHeight;
         return { x: (i - this._mapBounds.west) / (this._mapBounds.east - this._mapBounds.west) * this._imgWidth, y: e };
@@ -110,26 +118,26 @@ let l = class extends ht {
        * Handles clicks on the image area for adding new hotspots
        */
       imageClick: (t) => {
-        this._isAddingHotspot && (s(this, o, V).call(this, t.offsetX, t.offsetY), this._isAddingHotspot = !1);
+        this._isAddingHotspot && (o(this, s, Q).call(this, t.offsetX, t.offsetY), this._isAddingHotspot = !1);
       },
       /**
        * Handles clicks on hotspot markers
        */
       hotspotClick: (t, i) => {
-        t.stopPropagation(), s(this, o, M).call(this, i);
+        t.stopPropagation(), o(this, s, L).call(this, i);
       },
       /**
        * Handles drag end events for hotspot repositioning
        */
       hotspotDragEnd: (t, i) => {
-        const e = s(this, o, Y).call(this, t);
-        e && s(this, o, G).call(this, i, e);
+        const e = o(this, s, it).call(this, t);
+        e && o(this, s, Z).call(this, i, e);
       },
       /**
        * Handles title input changes - updates editing state only
        */
       titleInput: (t) => {
-        const i = t.target, e = s(this, o, T).call(this, i.value, q);
+        const i = t.target, e = o(this, s, E).call(this, i.value, X);
         this._selectedHotspot && (this._editingHotspot = {
           ...this._editingHotspot,
           title: e
@@ -140,32 +148,32 @@ let l = class extends ht {
        */
       descriptionChange: (t) => {
         if (this._selectedHotspot && this._editingHotspot) {
-          const i = t.target.value, e = s(this, o, T).call(this, i || "", vt);
+          const i = t.target.value, e = o(this, s, E).call(this, i || "", At);
           this._editingHotspot = {
             ...this._editingHotspot,
             description: e
           }, this._hasUnsavedChanges = !0, this.requestUpdate();
         }
       }
-    }, m(this, w, () => {
+    }, d(this, M, () => {
       const t = this.value.hotspots.length;
       if (t === 0)
         return;
       confirm(
         `Are you sure you want to delete all ${t} hotspot${t > 1 ? "s" : ""}? This action cannot be undone.`
-      ) && (s(this, o, x).call(this, { hotspots: [] }), this._selectedHotspot = void 0, this._editingHotspot = void 0, this._hasUnsavedChanges = !1);
-    }), m(this, U, () => {
-      this._hasUnsavedChanges && this._editingHotspot && s(this, o, f).call(this), this._isAddingHotspot = !this._isAddingHotspot, this._selectedHotspot = void 0, this._editingHotspot = void 0, this._hasUnsavedChanges = !1, this.requestUpdate();
+      ) && (o(this, s, A).call(this, { hotspots: [] }), this._selectedHotspot = void 0, this._editingHotspot = void 0, this._hasUnsavedChanges = !1);
+    }), d(this, I, () => {
+      this._hasUnsavedChanges && this._editingHotspot && o(this, s, H).call(this), this._isAddingHotspot = !this._isAddingHotspot, this._selectedHotspot = void 0, this._editingHotspot = void 0, this._hasUnsavedChanges = !1, this.requestUpdate();
     });
   }
   set config(t) {
-    this._config = t, s(this, o, H).call(this);
+    this._config = t, o(this, s, v).call(this);
   }
   get config() {
     return this._config;
   }
   set value(t) {
-    this._value = s(this, o, O).call(this, t), this.requestUpdate();
+    this._value = o(this, s, J).call(this, t), this.requestUpdate();
   }
   get value() {
     return this._value;
@@ -176,15 +184,17 @@ let l = class extends ht {
    * Sets up document workspace context and initial configuration
    */
   connectedCallback() {
-    super.connectedCallback(), this.consumeContext(ct, (t) => {
-      bt(this, _, t), s(this, o, H).call(this);
-    }), this._config && s(this, o, H).call(this);
+    super.connectedCallback(), this.consumeContext(Ht, (t) => {
+      m(this, x, t), o(this, s, v).call(this);
+    }), this.consumeContext(xt, (t) => {
+      m(this, w, t), m(this, y, void 0), m(this, b, !1), o(this, s, v).call(this);
+    }), this._config && o(this, s, v).call(this);
   }
   /**
    * Component disconnection lifecycle method - saves any pending changes
    */
   disconnectedCallback() {
-    this._hasUnsavedChanges && this._editingHotspot && s(this, o, f).call(this), super.disconnectedCallback();
+    this._hasUnsavedChanges && this._editingHotspot && o(this, s, H).call(this), super.disconnectedCallback();
   }
   /**
    * Main render method - orchestrates the rendering of all UI components
@@ -192,21 +202,21 @@ let l = class extends ht {
    */
   render() {
     const t = this.value?.hotspots || [];
-    return d`
+    return c`
       <div class="imagehotspot-editor theme${this._imgTheme}">
         <div class="imagehotspot-controls">
           <div class="controls-left">
             <button 
               type="button" 
               class="imagehotspot-btn ${this._isAddingHotspot ? "active" : ""}" 
-              @click="${u(this, U)}">
+              @click="${r(this, I)}">
               ${this._isAddingHotspot ? "Cancel Adding" : "Add Hotspot"}
             </button>
-            ${t.length > 0 ? d`
+            ${t.length > 0 ? c`
               <button 
                 type="button" 
                 class="imagehotspot-btn-danger" 
-                @click="${u(this, w)}"
+                @click="${r(this, M)}"
                 title="Delete all hotspots">
                 Delete All
               </button>
@@ -216,9 +226,9 @@ let l = class extends ht {
         </div>
 
         <div class="imagehotspot-image ${this._isAddingHotspot ? "adding-mode" : ""}" @click="${this.eventHandlers.imageClick}">
-          ${this._imgSrc ? d`
+          ${this._imgSrc ? c`
               <img src="${this._imgSrc}" width="${this._imgWidth}" height="${this._imgHeight}" style="display: block;" />
-            ` : d`
+            ` : c`
               <div class="imagehotspot-placeholder-image">
                 <div style="padding: 20px; text-align: center; color: #666;">
                   No image configured<br/>
@@ -227,10 +237,10 @@ let l = class extends ht {
               </div>
             `}
 
-           ${s(this, o, it).call(this)}
+           ${o(this, s, dt).call(this)}
         </div>
 
-        ${this._selectedHotspot ? d`
+        ${this._selectedHotspot ? c`
           <div class="imagehotspot-panel">
             <div class="panel-content">
               <div style="margin-bottom: 16px;">
@@ -242,7 +252,7 @@ let l = class extends ht {
                   @input=${this.eventHandlers.titleInput}
                   placeholder="Enter hotspot title"
                   style="width: 100%; padding: 8px; border: 1px solid #d8d7d9; border-radius: 3px; font-size: 13px;"
-                  maxlength="${q}">
+                  maxlength="${X}">
               </div>
          
               <div style="margin-bottom: 16px;">
@@ -256,12 +266,12 @@ let l = class extends ht {
                  </umb-input-tiptap>
               </div>
 
-              ${this._hasUnsavedChanges ? d`
+              ${this._hasUnsavedChanges ? c`
                 <div style="margin-bottom: 16px;">
                   <button 
                     type="button" 
                     class="imagehotspot-btn" 
-                    @click="${() => s(this, o, f).call(this)}">
+                    @click="${() => o(this, s, H).call(this)}">
                     Save Changes
                   </button>
                   <span style="margin-left: 8px; font-size: 12px; color: #666;">
@@ -273,7 +283,7 @@ let l = class extends ht {
           </div>
         ` : ""}
 
-        ${t.length > 0 ? d`
+        ${t.length > 0 ? c`
           <div class="hotspots-table-container">
             <h4>Hotspots Summary</h4>
             <table class="hotspots-table">
@@ -287,7 +297,7 @@ let l = class extends ht {
                 </tr>
               </thead>
               <tbody>
-                ${s(this, o, ot).call(this)}
+                ${o(this, s, ct).call(this)}
               </tbody>
             </table>
           </div>
@@ -296,8 +306,8 @@ let l = class extends ht {
     `;
   }
 };
-o = /* @__PURE__ */ new WeakSet();
-O = function(t) {
+s = /* @__PURE__ */ new WeakSet();
+J = function(t) {
   return !t || typeof t != "object" ? {
     image: null,
     width: null,
@@ -312,15 +322,21 @@ O = function(t) {
     hotspots: Array.isArray(t.hotspots) ? t.hotspots : []
   };
 };
+x = /* @__PURE__ */ new WeakMap();
+w = /* @__PURE__ */ new WeakMap();
+$ = /* @__PURE__ */ new WeakMap();
+b = /* @__PURE__ */ new WeakMap();
+U = /* @__PURE__ */ new WeakMap();
+y = /* @__PURE__ */ new WeakMap();
 _ = /* @__PURE__ */ new WeakMap();
-k = /* @__PURE__ */ new WeakMap();
-A = /* @__PURE__ */ new WeakMap();
-E = /* @__PURE__ */ new WeakMap();
-x = function(t) {
-  this.value = { ...this.value, ...t }, this.dispatchEvent(new R()), this.requestUpdate();
+D = /* @__PURE__ */ new WeakMap();
+P = /* @__PURE__ */ new WeakMap();
+B = /* @__PURE__ */ new WeakMap();
+A = function(t) {
+  this.value = { ...this.value, ...t }, this.dispatchEvent(new K()), this.requestUpdate();
 };
-M = function(t) {
-  if (this._hasUnsavedChanges && this._editingHotspot && s(this, o, f).call(this), this._selectedHotspot === t)
+L = function(t) {
+  if (this._hasUnsavedChanges && this._editingHotspot && o(this, s, H).call(this), this._selectedHotspot === t)
     this._selectedHotspot = void 0, this._editingHotspot = void 0;
   else {
     this._selectedHotspot = t;
@@ -329,15 +345,15 @@ M = function(t) {
   }
   this._hasUnsavedChanges = !1, this.requestUpdate();
 };
-f = function() {
+H = function() {
   if (!this._editingHotspot || !this._selectedHotspot) return;
   const t = this.value.hotspots.map(
     (i) => i.id === this._selectedHotspot ? { ...this._editingHotspot } : i
   );
-  s(this, o, x).call(this, { hotspots: t }), this._hasUnsavedChanges = !1;
+  o(this, s, A).call(this, { hotspots: t }), this._hasUnsavedChanges = !1;
 };
-V = function(t, i) {
-  if (!s(this, o, v).call(this)) {
+Q = function(t, i) {
+  if (!o(this, s, C).call(this)) {
     console.warn("Cannot add hotspot: invalid image dimensions");
     return;
   }
@@ -346,63 +362,63 @@ V = function(t, i) {
       console.error("Cannot add hotspot: value or hotspots array is invalid");
       return;
     }
-    const e = s(this, o, X).call(this), { lat: n, lng: a } = this.coordinateConverter.pixelToLatLng(t, i), r = {
+    const e = o(this, s, tt).call(this), { lat: a, lng: n } = this.coordinateConverter.pixelToLatLng(t, i), l = {
       id: e,
-      lat: n,
-      lng: a,
+      lat: a,
+      lng: n,
       description: "",
       title: ""
-    }, c = {
+    }, g = {
       ...this.value,
       width: this._imgWidth,
       height: this._imgHeight,
       image: this._imgSrc || null,
       bounds: this._mapBounds,
-      hotspots: [...this.value.hotspots, r]
+      hotspots: [...this.value.hotspots, l]
     };
-    this.value = c, this._selectedHotspot = e, this._editingHotspot = { ...r }, this._hasUnsavedChanges = !1, this.dispatchEvent(new R()), this.requestUpdate();
+    this.value = g, this._selectedHotspot = e, this._editingHotspot = { ...l }, this._hasUnsavedChanges = !1, this.dispatchEvent(new K()), this.requestUpdate();
   } catch (e) {
     console.error("Failed to add hotspot:", e);
   }
 };
-G = function(t, i) {
-  if (!s(this, o, v).call(this)) {
+Z = function(t, i) {
+  if (!o(this, s, C).call(this)) {
     console.warn("Cannot move hotspot: invalid image dimensions");
     return;
   }
   try {
-    const { lat: e, lng: n } = this.coordinateConverter.pixelToLatLng(i.x, i.y);
+    const { lat: e, lng: a } = this.coordinateConverter.pixelToLatLng(i.x, i.y);
     if (this._selectedHotspot !== t) {
-      this._hasUnsavedChanges && this._editingHotspot && s(this, o, f).call(this), this._selectedHotspot = t;
-      const a = this.value.hotspots.find((r) => r.id === t);
-      a && (this._editingHotspot = { ...a });
+      this._hasUnsavedChanges && this._editingHotspot && o(this, s, H).call(this), this._selectedHotspot = t;
+      const n = this.value.hotspots.find((l) => l.id === t);
+      n && (this._editingHotspot = { ...n });
     }
     this._editingHotspot && (this._editingHotspot = {
       ...this._editingHotspot,
       lat: e,
-      lng: n
+      lng: a
     }, this._hasUnsavedChanges = !0, this.requestUpdate());
   } catch (e) {
     console.error("Failed to move hotspot:", e);
   }
 };
-v = function() {
+C = function() {
   return this._imgWidth > 0 && this._imgHeight > 0;
 };
-S = function(t) {
+z = function(t) {
   return typeof t.lat == "number" && typeof t.lng == "number" && !isNaN(t.lat) && !isNaN(t.lng);
 };
-D = function(t) {
-  const i = t ? parseInt(t, 10) : W;
-  return Math.max(Ht, Math.min(yt, i));
+R = function(t) {
+  const i = t ? parseInt(t, 10) : N;
+  return Math.max(Et, Math.min(Mt, i));
 };
-X = function() {
+tt = function() {
   return `hotspot_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
 };
-T = function(t, i) {
+E = function(t, i) {
   return t.trim().substring(0, i);
 };
-Y = function(t) {
+it = function(t) {
   if (t.dataTransfer && t.target instanceof HTMLElement) {
     const i = t.target.closest(".imagehotspot-image");
     if (i) {
@@ -415,133 +431,149 @@ Y = function(t) {
   }
   return null;
 };
-j = function(t, i) {
+et = function(t, i) {
   if (t.title) {
     const e = t.description ? `: ${t.description}` : "";
     return `${t.title}${e}`;
   }
   return t.description || `Hotspot ${i}`;
 };
-I = function(t) {
+q = function(t) {
   const i = this.value.hotspots.filter((e) => e.id !== t);
-  s(this, o, x).call(this, { hotspots: i }), this._selectedHotspot === t && (this._selectedHotspot = void 0, this._editingHotspot = void 0, this._hasUnsavedChanges = !1);
+  o(this, s, A).call(this, { hotspots: i }), this._selectedHotspot === t && (this._selectedHotspot = void 0, this._editingHotspot = void 0, this._hasUnsavedChanges = !1);
 };
-w = /* @__PURE__ */ new WeakMap();
-U = /* @__PURE__ */ new WeakMap();
-H = async function() {
+M = /* @__PURE__ */ new WeakMap();
+I = /* @__PURE__ */ new WeakMap();
+v = async function() {
+  const t = ++$t(this, _)._;
   try {
-    if (!this._config || !u(this, _))
+    if (await o(this, s, st).call(this), t !== r(this, _) || !this._config || !r(this, x) && !r(this, b))
       return;
-    const t = this._config.getValueByAlias("imageSrc")?.toString();
-    if (!t) {
-      console.warn("No imageSrc property configured for custom map editor"), s(this, o, y).call(this);
+    const i = this._config.getValueByAlias("imageSrc")?.toString();
+    if (!i) {
+      console.warn("No imageSrc property configured for custom map editor"), o(this, s, k).call(this);
       return;
     }
-    await s(this, o, K).call(this, t), s(this, o, Z).call(this), this.requestUpdate();
-  } catch (t) {
-    console.error("Failed to configure custom map editor:", t), s(this, o, y).call(this);
-  }
-};
-K = async function(t) {
-  let i = u(this, _)?.getPropertyValue(t);
-  if (i || (i = await s(this, o, C).call(this, u(this, _)?.getUnique(), t) || void 0), i && typeof i == "object") {
-    const e = Array.isArray(i) ? i[0] : i, n = e?.mediaKey || e?.key || e?.udi;
-    !n && e?.src ? s(this, o, J).call(this, e.src) : n && await s(this, o, Q).call(this, n);
-  }
-};
-J = function(t) {
-  const i = this._config?.getValueByAlias("width");
-  this._imgWidth = s(this, o, D).call(this, i?.toString()), this._imgHeight = Math.round(this._imgWidth * P), this._imgSrc = `${t}?width=${this._imgWidth}&height=${this._imgHeight}&rmode=min&quality=80`;
-};
-Q = async function(t) {
-  try {
-    const i = await u(this, E).requestByUnique(t);
-    if (i?.data) {
-      const e = s(this, o, b).call(this, "umbracoWidth", i.data) || 0, n = s(this, o, b).call(this, "umbracoHeight", i.data) || 0, a = this._config?.getValueByAlias("width");
-      this._imgWidth = s(this, o, D).call(this, a?.toString()), e > 0 && n > 0 ? this._imgHeight = Math.round(this._imgWidth * n / e) : this._imgHeight = Math.round(this._imgWidth * P);
-      const r = s(this, o, b).call(this, "umbracoFile", i.data);
-      r?.src && (this._imgSrc = `${r.src}?width=${this._imgWidth}&height=${this._imgHeight}&rmode=min&quality=80`);
-    }
+    await o(this, s, at).call(this, i, t), o(this, s, lt).call(this), this.requestUpdate();
   } catch (i) {
-    console.warn("Failed to load media image:", i), s(this, o, y).call(this);
+    console.error("Failed to configure custom map editor:", i), t === r(this, _) && o(this, s, k).call(this);
   }
 };
-Z = function() {
+st = function() {
+  const t = this._config?.getValueByAlias("imageSrc")?.toString();
+  return !r(this, w) || !t ? Promise.resolve() : ((t !== r(this, $) || !r(this, y)) && (m(this, $, t), m(this, y, o(this, s, ot).call(this, r(this, w), t))), r(this, y));
+};
+ot = async function(t, i) {
+  const e = await t.propertyValueByAlias(i);
+  e && (m(this, b, !0), this.observe(e, (a) => {
+    const n = a !== r(this, U);
+    m(this, U, a ?? void 0), n && o(this, s, v).call(this);
+  }, "_observeDatasetImage"));
+};
+at = async function(t, i) {
+  let e = r(this, b) ? r(this, U) : r(this, x)?.getPropertyValue(t);
+  if (!e && !r(this, b) && (e = await o(this, s, S).call(this, r(this, x)?.getUnique(), t) || void 0), i === r(this, _))
+    if (e && typeof e == "object") {
+      const a = Array.isArray(e) ? e[0] : e, n = a?.mediaKey || a?.key || a?.udi;
+      !n && a?.src ? o(this, s, nt).call(this, a.src) : n && await o(this, s, rt).call(this, n, i);
+    } else
+      o(this, s, k).call(this);
+};
+nt = function(t) {
+  const i = this._config?.getValueByAlias("width");
+  this._imgWidth = o(this, s, R).call(this, i?.toString()), this._imgHeight = Math.round(this._imgWidth * O), this._imgSrc = `${t}?width=${this._imgWidth}&height=${this._imgHeight}&rmode=min&quality=80`;
+};
+rt = async function(t, i) {
+  try {
+    const e = await r(this, B).requestByUnique(t);
+    if (i !== r(this, _))
+      return;
+    if (e?.data) {
+      const a = o(this, s, T).call(this, "umbracoWidth", e.data) || 0, n = o(this, s, T).call(this, "umbracoHeight", e.data) || 0, l = this._config?.getValueByAlias("width");
+      this._imgWidth = o(this, s, R).call(this, l?.toString()), a > 0 && n > 0 ? this._imgHeight = Math.round(this._imgWidth * n / a) : this._imgHeight = Math.round(this._imgWidth * O);
+      const g = o(this, s, T).call(this, "umbracoFile", e.data);
+      g?.src && (this._imgSrc = `${g.src}?width=${this._imgWidth}&height=${this._imgHeight}&rmode=min&quality=80`);
+    }
+  } catch (e) {
+    console.warn("Failed to load media image:", e), o(this, s, k).call(this);
+  }
+};
+lt = function() {
   const t = this._config?.getValueByAlias("theme") || "Red";
-  this._imgTheme = Tt[t] || 1;
+  this._imgTheme = St[t] || 1;
 };
-y = function() {
-  this._imgWidth = W, this._imgHeight = Math.round(this._imgWidth * P), this._imgSrc = void 0;
+k = function() {
+  this._imgWidth = N, this._imgHeight = Math.round(this._imgWidth * O), this._imgSrc = void 0;
 };
-tt = async function(t) {
+ht = async function(t) {
   if (t)
     try {
-      return (await u(this, A).requestItems([t]))?.data?.[0]?.parent?.unique;
+      return (await r(this, P).requestItems([t]))?.data?.[0]?.parent?.unique;
     } catch (i) {
       console.warn("Failed to get parent from unique:", i);
       return;
     }
 };
-C = async function(t, i) {
+S = async function(t, i) {
   if (!t)
     return null;
   try {
-    const e = await u(this, k).requestByUnique(t), n = s(this, o, b).call(this, i, e?.data);
-    if (n)
-      return n;
-    const a = await s(this, o, tt).call(this, t);
-    return await s(this, o, C).call(this, a, i);
+    const e = await r(this, D).requestByUnique(t), a = o(this, s, T).call(this, i, e?.data);
+    if (a)
+      return a;
+    const n = await o(this, s, ht).call(this, t);
+    return await o(this, s, S).call(this, n, i);
   } catch (e) {
     return console.warn("Failed to get value from unique:", e), null;
   }
 };
-b = function(t, i) {
-  return i?.values && i.values.find((n) => n.alias === t)?.value || null;
+T = function(t, i) {
+  return i?.values && i.values.find((a) => a.alias === t)?.value || null;
 };
-it = function() {
-  return this.value?.hotspots ? this.value.hotspots.filter(s(this, o, S).bind(this)).map((i, e) => {
+dt = function() {
+  return this.value?.hotspots ? this.value.hotspots.filter(o(this, s, z).bind(this)).map((i, e) => {
     try {
-      const { x: n, y: a } = this.coordinateConverter.latLngToPixel(i.lat, i.lng);
-      return s(this, o, et).call(this, i, e + 1, n, a);
-    } catch (n) {
-      return console.warn("Failed to render hotspot marker:", n), d``;
+      const { x: a, y: n } = this.coordinateConverter.latLngToPixel(i.lat, i.lng);
+      return o(this, s, pt).call(this, i, e + 1, a, n);
+    } catch (a) {
+      return console.warn("Failed to render hotspot marker:", a), c``;
     }
   }) : [];
 };
-et = function(t, i, e, n) {
-  const a = this._selectedHotspot === t.id, r = a && this._hasUnsavedChanges && this._editingHotspot && (this._editingHotspot.lat !== t.lat || this._editingHotspot.lng !== t.lng);
-  let c = e, B = n;
-  if (r && this._editingHotspot)
+pt = function(t, i, e, a) {
+  const n = this._selectedHotspot === t.id, l = n && this._hasUnsavedChanges && this._editingHotspot && (this._editingHotspot.lat !== t.lat || this._editingHotspot.lng !== t.lng);
+  let g = e, F = a;
+  if (l && this._editingHotspot)
     try {
-      const g = this.coordinateConverter.latLngToPixel(
+      const f = this.coordinateConverter.latLngToPixel(
         this._editingHotspot.lat,
         this._editingHotspot.lng
       );
-      c = g.x, B = g.y;
-    } catch (g) {
-      console.warn("Failed to convert editing coordinates:", g);
+      g = f.x, F = f.y;
+    } catch (f) {
+      console.warn("Failed to convert editing coordinates:", f);
     }
-  const at = s(this, o, j).call(this, t, i);
-  return d`
+  const mt = o(this, s, et).call(this, t, i);
+  return c`
             <div 
-                class="imagehotspot-hotspot ${a ? "selected" : ""} ${r ? "moved" : ""}" 
+                class="imagehotspot-hotspot ${n ? "selected" : ""} ${l ? "moved" : ""}" 
                 draggable="true" 
-                @dragend="${(g) => this.eventHandlers.hotspotDragEnd(g, t.id)}"
-                @click="${(g) => this.eventHandlers.hotspotClick(g, t.id)}"
-                style="left:${c}px;top:${B}px;"
-                title="${at}${r ? " (moved - unsaved)" : ""}">
+                @dragend="${(f) => this.eventHandlers.hotspotDragEnd(f, t.id)}"
+                @click="${(f) => this.eventHandlers.hotspotClick(f, t.id)}"
+                style="left:${g}px;top:${F}px;"
+                title="${mt}${l ? " (moved - unsaved)" : ""}">
                 <span class="hotspot-number">${i}</span>
             </div>
         `;
 };
-ot = function() {
+ct = function() {
   return this.value?.hotspots ? this.value.hotspots.map((t, i) => {
     const e = this._selectedHotspot === t.id;
-    return s(this, o, S).call(this, t) ? s(this, o, nt).call(this, t, i, e) : s(this, o, st).call(this, t, i, e);
+    return o(this, s, z).call(this, t) ? o(this, s, ut).call(this, t, i, e) : o(this, s, gt).call(this, t, i, e);
   }) : [];
 };
-st = function(t, i, e) {
-  return d`
+gt = function(t, i, e) {
+  return c`
             <tr class="${e ? "selected-row" : ""}">
                 <td class="hotspot-index">${i + 1}</td>
                 <td class="hotspot-description">
@@ -557,7 +589,7 @@ st = function(t, i, e) {
                     <button 
                         type="button" 
                         class="imagehotspot-btn-small imagehotspot-btn-danger" 
-                        @click="${() => s(this, o, I).call(this, t.id)}"
+                        @click="${() => o(this, s, q).call(this, t.id)}"
                         title="Delete this hotspot">
                         Delete
                     </button>
@@ -565,31 +597,31 @@ st = function(t, i, e) {
             </tr>
         `;
 };
-nt = function(t, i, e) {
-  const n = () => {
-    s(this, o, M).call(this, t.id);
-  }, a = (r) => {
-    r.stopPropagation(), s(this, o, I).call(this, t.id);
+ut = function(t, i, e) {
+  const a = () => {
+    o(this, s, L).call(this, t.id);
+  }, n = (l) => {
+    l.stopPropagation(), o(this, s, q).call(this, t.id);
   };
-  return d`
+  return c`
             <tr class="${e ? "selected-row" : ""}"
-                @click="${n}"
+                @click="${a}"
                 style="cursor: pointer;">
                 <td class="hotspot-index">${i + 1}</td>
                 <td class="hotspot-description">
-                    ${t.title ? d`<strong>${t.title}</strong><br/>${L(t.description) || "<em>No description</em>"}` : L(t.description) || "<em>No description</em>"}
+                    ${t.title ? c`<strong>${t.title}</strong><br/>${V(t.description) || "<em>No description</em>"}` : V(t.description) || "<em>No description</em>"}
                 </td>
                 <td class="hotspot-coordinates">
-                    ${t.lat.toFixed(z)}
+                    ${t.lat.toFixed(G)}
                 </td>
                 <td class="hotspot-coordinates">
-                    ${t.lng.toFixed(z)}
+                    ${t.lng.toFixed(G)}
                 </td>
                 <td class="hotspot-actions">
                     <button 
                         type="button" 
                         class="imagehotspot-btn-small imagehotspot-btn-danger" 
-                        @click="${a}"
+                        @click="${n}"
                         title="Delete this hotspot">
                         Delete
                     </button>
@@ -597,9 +629,9 @@ nt = function(t, i, e) {
             </tr>
         `;
 };
-l.styles = [
-  ut,
-  rt`
+h.styles = [
+  wt,
+  ft`
 			:host {
 				display: block;
 				padding: var(--uui-size-layout-1);
@@ -843,48 +875,48 @@ l.styles = [
 			}
 		`
 ];
-h([
-  p()
-], l.prototype, "_config", 2);
-h([
-  p()
-], l.prototype, "_imgSrc", 2);
-h([
-  p()
-], l.prototype, "_imgWidth", 2);
-h([
-  p()
-], l.prototype, "_imgHeight", 2);
-h([
-  p()
-], l.prototype, "_imgTheme", 2);
-h([
-  p()
-], l.prototype, "_selectedHotspot", 2);
-h([
-  p()
-], l.prototype, "_isAddingHotspot", 2);
-h([
-  p()
-], l.prototype, "_mapBounds", 2);
-h([
-  p()
-], l.prototype, "_editingHotspot", 2);
-h([
-  p()
-], l.prototype, "_hasUnsavedChanges", 2);
-h([
-  N({ attribute: !1 })
-], l.prototype, "config", 1);
-h([
-  N({ attribute: !1 })
-], l.prototype, "value", 1);
-l = h([
-  lt("property-editor-multi-hotspot-editor")
-], l);
-const Mt = l;
+p([
+  u()
+], h.prototype, "_config", 2);
+p([
+  u()
+], h.prototype, "_imgSrc", 2);
+p([
+  u()
+], h.prototype, "_imgWidth", 2);
+p([
+  u()
+], h.prototype, "_imgHeight", 2);
+p([
+  u()
+], h.prototype, "_imgTheme", 2);
+p([
+  u()
+], h.prototype, "_selectedHotspot", 2);
+p([
+  u()
+], h.prototype, "_isAddingHotspot", 2);
+p([
+  u()
+], h.prototype, "_mapBounds", 2);
+p([
+  u()
+], h.prototype, "_editingHotspot", 2);
+p([
+  u()
+], h.prototype, "_hasUnsavedChanges", 2);
+p([
+  Y({ attribute: !1 })
+], h.prototype, "config", 1);
+p([
+  Y({ attribute: !1 })
+], h.prototype, "value", 1);
+h = p([
+  _t("property-editor-multi-hotspot-editor")
+], h);
+const Nt = h;
 export {
-  l as PropertyEditorHotSpotsEditorElement,
-  Mt as default
+  h as PropertyEditorHotSpotsEditorElement,
+  Nt as default
 };
-//# sourceMappingURL=property-editor-multi-hotspot-editor.element-71ml8vA7.js.map
+//# sourceMappingURL=property-editor-multi-hotspot-editor.element-02cvaxXp.js.map
